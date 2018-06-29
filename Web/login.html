@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food.pt - Sistema de Gestão e Entrega de Comida</title>
+        <link rel="stylesheet" type="text/css" href="css/login.css">   
+        
+        
+    </head>
+    <body>
+        
+        
+        <div class='header'>            
+            <a href="index.html">
+                <img class='logo' src="images/logo2.jpg" alt="Eat">
+                
+            </a>
+                
+            
+            <button class='login' type="button" ><a href="login.html">Registar | Entrar</a></button>
+                      
+        </div>
+        
+        <div class='main'>
+            <div class='restaurantList-section'>
+                <br/>
+                <table id='restaurantList'>
+                    <tr>
+                        <th id='lado1'>
+                            <h2 id='title'>Pretendo registar-me!</h2>
+                            <form>
+                                <input class='login-email' type="text" id="sign-email" placeholder='Introduza o seu email'><br>
+                                <input class='login-senha' type="password" id="sign-password" placeholder='Introduza a sua palavra-passe'><br>
+                                <input class='login-email' type="text" id="sign-name" placeholder='Introduza o seu nome'><br>
+                                <input class='login-email' type="text" id="sign-nif" placeholder='Introduza o seu NIF'><br>
+                                <input class='login-email' type="text" id="sign-morada" placeholder='Introduza a sua morada'><br>
+                                <input class='login-button' type="submit" value="Registar!" onclick='return cadastrar();'>
+                            </form>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='lado2'>
+                            <h2 id='title'>Já estou registado!</h2>
+                            <form method='get'>
+                                <input class='login-email' type="text" id="login-email" placeholder='Introduza o seu email'><br>
+                                <input class='login-senha' type="password" id="login-password" placeholder='Introduza a sua senha'><br>
+                                <input class='login-button' type="submit" value="Entrar!" onclick='return login();'>
+                            </form>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>     
+                    
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            function login() {
+                var email = document.getElementById("login-email").value;
+                var password = document.getElementById("login-password").value;
+                
+                var usuarios = JSON.parse(localStorage.usuarios);
+                
+                var i;
+                for(i = 0; i<usuarios.length; i++) {
+                    if (usuarios[i][0] == email) {
+                        if(usuarios[i][1] == password) {
+                            localStorage.logado = 'true';
+                            localStorage.userNumber = i;
+                            window.location.href='/index.html';
+
+                            return false;
+                        }
+                    }
+                }
+                
+                alert("Email ou senha incorretos! Tente de novo!");
+                
+            }
+            
+            function cadastrar() {
+                var email = document.getElementById("sign-email").value;
+                var password = document.getElementById("sign-password").value;
+                var nome = document.getElementById("sign-name").value;
+                var nif = document.getElementById("sign-nif").value;
+                var morada = document.getElementById("sign-morada").value;
+                
+                
+                
+                if(localStorage.usersNumber == 1) {
+                    var usuarios = JSON.parse(localStorage.usuarios);
+                    
+                    var i;
+                    for(i = 0; i<usuarios.length; i++) {
+                        if (usuarios[i][0] == email) {
+                            alert("Este email já está registado.");
+                            return false;
+                        }
+                    }
+                    
+                    var item = new Array();
+                    item[0] = email;
+                    item[1] = password;
+                    item[2] = nome;
+                    item[3] = nif;
+                    item[4] = morada;
+                    
+                    var usuarios = JSON.parse(localStorage.getItem('usuarios'));
+                    var numero = localStorage.usersNumber;
+                    usuarios[1] = item;
+                    
+                    var usersJSON = JSON.stringify(usuarios);
+                
+                    localStorage.setItem("usuarios" , usersJSON);
+                    localStorage.usersNumber = 2;  
+                    alert("Registado com sucesso!");
+                
+                } else if (localStorage.usersNumber > 1 ) {
+                    var usuarios = JSON.parse(localStorage.usuarios);
+                    
+                    var i;
+                    for(i = 0; i<usuarios.length; i++) {
+                        if (usuarios[i][0] == email) {
+                                alert("Este email já está registado.");
+                                return false;
+                        }
+                    }
+                    
+                    var item = new Array();
+                    item[0] = email;
+                    item[1] = password;
+                    item[2] = nome;
+                    item[3] = nif;
+                    item[4] = morada;
+                    
+                    var usuarios = JSON.parse(localStorage.getItem('usuarios'));
+                    var numero = localStorage.usersNumber;
+                    usuarios[numero] = item;
+                    
+                    var usersJSON = JSON.stringify(usuarios);
+                
+                    localStorage.setItem("usuarios" , usersJSON);
+                    localStorage.usersNumber++;  
+                    alert("Registado com sucesso!");
+
+                    
+                    
+                } else {
+                    var item = new Array();
+                    item[0] = email;
+                    item[1] = password;
+                    item[2] = nome;
+                    item[3] = nif;
+                    item[4] = morada;
+                    
+                    var users = new Array();
+                    users[0] = item;
+                    
+                    var usersJSON = JSON.stringify(users);
+                
+                    localStorage.setItem("usuarios" , usersJSON);
+                    localStorage.usersNumber = 1;  
+                    alert("Registado com sucesso!");
+                }
+                
+                return false;
+            }
+        </script>
+    </body>
+</html>

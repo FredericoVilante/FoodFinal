@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food - Delivery Online</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="estab.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+      <label for="establecimento">Nome do Establecimento:</label><br>
+      <input type="text" id="establecimento"><br>
+      <input type="button" value="log" id="log"><br>
+      <section>
+        <p>Nova Ementa:</p>
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome"><br>
+        <label for="estab">Estab:</label><br>
+        <input type="text" id="estab"><br>
+        <label for="aler">Alergenios:</label><br>
+        <input type="checkbox" id="aler"><br>
+        <label for="desc">Descrição:</label><br>
+        <input type="text" id="desc"><br>
+        <label for="preco">Preço:</label><br>
+        <input type="number" id="preco"><br>
+        <select id="combo">
+          <option value="Vegetariano">Vegetariano</option>
+          <option value="Italiano">Italiano</option>
+          <option value="Japones">Japones</option>
+          <option value="indiano">indiano</option>
+          <option value="Churrasco">Churrasco</option>
+        </select>
+        <input type="button" value="Criar ementa" id="ementa"><br>
+      </section>
+      <section>
+        <p>Novo Estafeta:</p>
+        <label for="nomeE">Nome:</label><br>
+        <input type="text" id="nomeE"><br>
+        <label for="contacto">Contacto:</label><br>
+        <input type="text" id="contacto"><br>
+        <label for="zona">Zona:</label><br>
+        <input type="number" id="zona"><br>
+        <input type="button" value="Criar estafeta" id="estafeta"><br>
+      </section>
+      <section>
+        <p>Nome Estafeta:</p>
+        <select id="estafetas">
+          
+        </select>
+      </section>
+
+        <p>Pedidos</p>
+        <ul id="listdiv"></ul>
+
+
+    </body>
+</html>

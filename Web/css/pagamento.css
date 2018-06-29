@@ -1,0 +1,348 @@
+.header {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    background-color: green;
+    top:0;
+    z-index: 1;
+}
+
+.main {   
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    margin-left: 5%;
+    margin-top: 17px;
+    height:60%;
+}
+
+#zipcode {
+    margin-left: 20%;
+    top: 30%;
+    position: absolute;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+#googlepin {
+    display: inline;
+    top: 40%;
+    height: 35px;
+    width: auto;
+}
+
+map {
+    border-radius: 12px;
+    
+}
+
+.login {
+    margin-right: 70px;
+    right: 0;
+    margin-top: 32px;
+    position: absolute;
+    height:30px;
+    background-color: white;
+    font-size: 15;
+    
+    font-style: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+a {
+    color: green;
+    text-decoration: none;
+}
+
+a:visited
+{
+     color:green; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+.restaurantList-section {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    margin-bottom: 30px;
+    background-color: white;
+    width: 75%;
+    border-radius: 15px;
+}
+
+#title {
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 24px;
+    color: grey;
+    margin-left: auto;
+    margin-top: auto;
+    height: 30px;
+    width: 95%;
+}
+
+#restaurantList {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#restaurantPic {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+}
+
+#lado1 {
+    width: 40%;
+    float: left;
+}
+
+#lado2 {
+    float: right;
+    width: 40%;
+}
+
+.campo-endereco {
+    padding-left: 30px;
+    display: block;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 18px;
+    color: black;
+    letter-spacing: -1px;
+    
+    border: solid;
+    border-width: thin;
+    border-radius: 8px;
+  
+}
+
+#radio-pag {
+    padding-left: 30px;
+    display: block;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 18px;
+    color: black;
+    letter-spacing: -1px;
+  
+}
+
+
+
+.login-button {
+    outline: none;
+    display: block;
+    height: 50px;
+    width: 112%;
+    background-color: limegreen;
+    border: none;
+    font-size: 22px;
+    color: white;
+    font-style: bold;
+    
+    border-radius: 8px;
+    
+}
+
+
+body {
+    background-color: lightgrey;
+    margin:0;
+    margin-top: 90px;
+}
+
+
+/* The container */
+.container {
+    font-family: Helvetica, Geneva, sans-serif;
+    padding-left: 10%;
+    text-align: left;
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    color: grey;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+    z-index: 0;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+    z-index: 0;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    z-index: 0;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+    z-index: 0;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+    z-index: 0;
+}
+
+
+#products {
+    border-radius: 8px;
+    display: block;
+    background: white;
+    
+}
+
+#productTable {
+    width: 100%;
+    margin: auto;
+}
+
+#prod {
+    width: 32%;
+    text-align: center;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+   
+}
+#morada {
+    width: 32%;
+    text-align: left;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+   
+}
+
+#rest {
+    width: 32%;
+    text-align: center;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+   
+}
+
+#price {
+    width: 32%;
+    
+    text-align: center;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+}
+
+#rmv-bttn {
+    margin-right: 4%;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 20px;
+    height: auto;
+}
+
+#rmv-bttn:hover {
+    opacity: 0.5;
+    margin-right: 4%;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 20px;
+    height: auto;
+}
+
+#pay-button {
+    outline: none;
+    display: block;
+    height: 20px;
+    width: 80%;
+    background-color: limegreen;
+    border: none;
+    font-size: 14px;
+    color: white;
+    font-style: bold;
+    
+    border-radius: 8px;
+    
+}
+
+#pay-button:hover {
+    opacity: 0.5;
+    outline: none;
+    display: block;
+    height: 20px;
+    width: 80%;
+    background-color: limegreen;
+    border: none;
+    font-size: 14px;
+    color: white;
+    font-style: bold;
+    
+    border-radius: 8px;
+    
+}
+
+
+      html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+      }
+      #map-canvas {
+          height: 100%;
+          width: 100%;
+      }

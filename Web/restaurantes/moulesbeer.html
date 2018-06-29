@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food.pt - Sistema de Gestão e Entrega de Comida - Burger King</title>
+        <link rel="stylesheet" type="text/css" href="../css/restaurante.css">
+        <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="carrinhoModal" class="modal">
+              <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class='cartHeader'>  
+                        <img id='carticon' src="../images/carticon.png">
+                        <div class='cartHeaderTitle'> 
+                            O seu carrinho
+                        </div>
+                    </div>
+                    <div id='carrinhoSection'>
+                            
+                    </div>
+                    </div>
+
+        </div>
+        
+        <div class='header'>            
+            <a href="../index.html">
+                <img class='logo' src="../images/logo2.jpg" alt="Eat">
+            </a>
+            <div id="zipcode" alt='Alterar Código Postal'>
+                <img id='googlepin' src="../images/googlepin.png" alt='Alterar Código Postal'>
+            </div>
+            <button class='carrinho' id='carrinho' type="button" >Carrinho</button>
+            <button class='login' type="button" ><a id='username' href="../login.html">Registar | Entrar</a></button>
+                      
+        </div>
+        
+        <section class='main'>
+            <div class='description-section'>
+                <div class='restaurantPic-section'>
+                    <img class='restaurantPic' src="../images/restaurantImges/moulesbeer.jpg">
+                </div>
+                
+                <div class='restaurantInfo'>
+                    <div class='restaurantTitle'>
+                        Moules & Beer
+                    </div>
+                    <div class='restaurantDescription'>
+                        Churrasqueira · €€<br>
+                        1.20 km · 45 min<br><br>
+                        
+                        
+                        Em Outubro de 2013 nasce o Moules&Beer, em Campo de Ourique! Este espaço mantém a linha do “Moules&Gin”, mas desta vez substitui a companhia do Gin, pela cerveja e assim responde à tradição de que Mexilhões e cerveja nasceram para estar juntos. 
+                    </div>
+                </div>            
+            </div>
+            
+            
+            <div id='menu-section'>
+                <div id='menu-title'>
+                    ENTRADAS
+                </div>
+                <svg id='separationLine' height="1" width="96%">
+                    <line x1="0" y1="0" x2="98%" y2="0"/>
+                </svg>
+                
+                <div id='menu-item-title'>
+                    Tábua de Mexilhão Panado
+                    <img onclick='return addToCart(this);' restaurant ='Moules & Beer' name='Tábua de Mexilhão Panado' price='5.0' id='add-bttn' src="../images/add-bttn.png" alt="Adicionar ao carrinho">
+                </div>
+                <div id='menu-item-description'>
+                    Com molho de chile doce e maionese.
+                    
+                    <div id='menu-item-price'>
+                        5,00 €
+                    </div>
+                </div>
+                
+                <br><br>
+            </div>
+            
+            <div id='menu-section'>
+                <div id='menu-title'>
+                    MOULES
+                </div>
+                <svg id='separationLine' height="1" width="96%">
+                    <line x1="0" y1="0" x2="98%" y2="0"/>
+                </svg>
+                <div id='menu-item-title'>
+                    Moules Meuniére
+                    <img onclick='return addToCart(this);' restaurant ='Moules & Beer' name='Moules Meuniére' price='11.0' id='add-bttn' src="../images/add-bttn.png" alt="Adicionar ao carrinho">
+                </div>
+                <div id='menu-item-description'>
+                    Molho clássico á belga com natas, acompanhado de batata frita.   
+                    
+                    <div id='menu-item-price'>
+                        11,00 €
+                    </div>
+                </div>
+                <svg id='separationLine' height="1" width="96%">
+                    <line x1="0" y1="0" x2="98%" y2="0"/>
+                </svg>
+                <div id='menu-item-title'>
+                    Moules Mediterrânicas
+                    <img onclick='addToCart(this);' restaurant ='Moules & Beer' name='Moules Mediterrânicas' price='11.0' id='add-bttn' src="../images/add-bttn.png" alt="Adicionar ao carrinho">
+                </div>
+                <div id='menu-item-description'>
+                    Molho de tomate e ervas aromáticas, acompanhado de batata frita.
+                    
+                    <div id='menu-item-price'>
+                        11,00 €
+                    </div>
+                </div>
+                <br>
+            </div>
+            
+            <div id='menu-section'>
+                <div id='menu-title'>
+                    SOBREMESAS
+                </div>
+                <svg id='separationLine' height="1" width="96%">
+                    <line x1="0" y1="0" x2="98%" y2="0"/>
+                </svg>
+                <div id='menu-item-title'>
+                    Cheesecake de Chocolate
+                    <img onclick='addToCart(this);' restaurant ='Moules & Beer' name='Cheesecake de Chocolate' price='4.0' id='add-bttn' src="../images/add-bttn.png" alt="Adicionar ao carrinho">
+                </div>
+                <div id='menu-item-description'>
+                    Chocolate e praline.
+                    
+                    <div id='menu-item-price'>
+                        4,00 €
+                    </div>
+                </div>
+
+                <br>
+            </div>
+        </section>
+        <script type="text/javascript">
+            document.getElementById("zipcode").innerHTML += sessionStorage.zipcode;
+            
+            
+            
+            if(localStorage.logado == 'true') {
+                var usuarios = JSON.parse(localStorage.usuarios);    
+                document.getElementById('username').innerHTML = usuarios[localStorage.userNumber][2] + " (Logout)";  
+                document.getElementById('username').setAttribute('href', '../index.html');
+                document.getElementById('username').setAttribute('onclick', 'return logout();');
+            }
+            
+            function logout() {
+                localStorage.logado = false;
+            }
+        </script>
+
+        <script type="text/javascript">   
+            function checkCart() {
+                var i;
+                var num = sessionStorage.cartItemsNumber;
+                var cartItemsN = JSON.parse(sessionStorage.getItem("cartItems"));
+                for(i = 0; i<num; i++) {
+                    
+                    console.log(cartItemsN[i]);
+                }
+                
+                return false;
+            }
+            
+            function addToCart(e) {
+                if(sessionStorage.cartItemsNumber == 1) {
+                    
+                    var itemName = e.getAttribute("name");
+                    var itemPrice = e.getAttribute("price");
+                    var itemRestaurant = e.getAttribute("restaurant");
+                    
+                    var item = new Array();
+                    item[0] = itemName;
+                    item[1] = itemPrice;
+                    item[2] = itemRestaurant;
+                    
+                    var cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+                    cartItems[1] = item;
+                    var cartItemsJSON = JSON.stringify(cartItems);
+                
+                    sessionStorage.setItem("cartItems" , cartItemsJSON);
+                    sessionStorage.cartItemsNumber = 2; 
+                    
+                
+                } else if(sessionStorage.cartItemsNumber > 1 ) {
+                    
+                    console.log(sessionStorage.cartItemsNumber);
+                    
+                    var itemName = e.getAttribute("name");
+                    var itemPrice = e.getAttribute("price");
+                    var itemRestaurant = e.getAttribute("restaurant");
+                    
+                    var item = new Array();
+                    item[0] = itemName;
+                    item[1] = itemPrice;
+                    item[2] = itemRestaurant;
+                    
+                    
+                    var numero = sessionStorage.cartItemsNumber;
+                    
+                    var cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+                    cartItems[numero] = item;
+                    var cartItemsJSON = JSON.stringify(cartItems);
+
+                    sessionStorage.cartItemsNumber++;
+                    sessionStorage.setItem('cartItems', cartItemsJSON);
+                    
+                    
+                } else {
+                    var itemName = e.getAttribute("name");
+                    var itemPrice = e.getAttribute("price");
+                    var itemRestaurant = e.getAttribute("restaurant");
+                    
+                    var item = new Array();
+                    item[0] = itemName;
+                    item[1] = itemPrice;
+                    item[2] = itemRestaurant;
+                    
+                    var cartItems = new Array();
+                    cartItems[0] = item;
+                    
+                    var cartItemsJSON = JSON.stringify(cartItems);
+                
+                    sessionStorage.setItem("cartItems" , cartItemsJSON);
+                    sessionStorage.cartItemsNumber = 1;  
+                    
+                }
+                
+                alert("Adicionado com sucesso! Delicioso!");
+                
+                location.reload();
+                
+                return false;   
+            } 
+        </script>
+        
+        <script>
+            
+            function removeFromCart(e) {
+                var cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
+                var index = e.getAttribute('prodNumber');
+                if (index > -1) {
+                    cartItems.splice(index, 1);
+                }
+                sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+                sessionStorage.cartItemsNumber--;
+                alert("O seu produto foi removido com sucesso");
+                location.reload();
+            }
+            
+            if(localStorage.logado == 'true') {
+                var usuarios = JSON.parse(localStorage.usuarios);    
+                document.getElementById('username').innerHTML = usuarios[localStorage.userNumber][2] + " (Logout)";  
+                document.getElementById('username').setAttribute('href', 'index.html');
+                document.getElementById('username').setAttribute('onclick', 'return logout();');
+            }
+            
+            function logout() {
+                localStorage.logado = false;
+            }
+            
+            // Get the modal
+            var modal = document.getElementById('carrinhoModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("carrinho");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            
+            if (sessionStorage.cartItemsNumber == "0" || sessionStorage.cartItemsNumber === undefined) {
+                document.getElementById("carrinhoSection").innerHTML = "<div id='cartEmpty'>Desculpe, não há nada aqui</div>";
+            } else {
+                var i;
+                var num = sessionStorage.cartItemsNumber;
+                var cartItemsN = JSON.parse(sessionStorage.getItem("cartItems"));
+                var total = 0;
+                document.getElementById("carrinhoSection").innerHTML +=
+                    "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Produto</b></td>" +
+                                    "<td id='price'><b>Preço</b></td>" +
+                                    "<td id='rest'><b>Restaurante</b></td>" +
+                                    "<td id='removeButton'>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                for(i = 0; i<num; i++) {
+                    var prod = cartItemsN[i][0];
+                    var price = cartItemsN[i][1];
+                    var rest = cartItemsN[i][2];
+                    price = parseFloat(price, 10);
+                    total += price;
+                    document.getElementById("carrinhoSection").innerHTML +=
+                        "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'>" +
+                                        prod +
+                                    "</td>" +
+                                    "<td id='price'>" +
+                                        price + "€" +
+                                    "</td>" +
+                                    "<td id='rest'>" +
+                                        rest +
+                                    "</td>" +
+                                    "<td id='removeButton'>" +
+                                        "<img prodNumber='" + i + "' onclick='removeFromCart(this);' id='rmv-bttn' src='../images/rmv-bttn.png'>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                }
+                
+                document.getElementById("carrinhoSection").innerHTML +=
+                        "<div id='productSession'><br>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Total:</b>" +
+                                    "</td>" +
+                                    "<td id='price'><b>" +
+                                        total + "€" +
+                                    "</b></td>" +
+                                    "<td id='rest'>" +
+                                        "<button onclick='return pagar();' id='pay-button'>PAGAR</button>"
+                                    "</td>" +
+                                    "<td id='removeButton'> </td>"+
+                                "</tr>" + 
+                            "</table><br><br>" + 
+                        "</div>"  
+                
+            }
+            
+            function pagar() {
+                if(localStorage.logado != 'true' || localStorage.logado === undefined) {
+                    window.location.href='/pagamento.html';
+                } else {
+                    window.location.href='/pagfdsfdsamento.html';
+                }
+            }
+        </script>
+    </body>
+    
+</html>

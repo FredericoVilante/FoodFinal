@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food.pt - Pagamento</title>
+        <link rel="stylesheet" type="text/css" href="css/pagamento.css">   
+        
+        
+    </head>
+    <body>
+        
+        
+        <div class='header'>            
+            <a href="index.html">
+                <img class='logo' src="images/logo2.jpg" alt="Eat">
+                
+            </a>
+            <button class='login' type="button" ><a id='username' href="login.html">Registar | Entrar</a></button>
+                      
+        </div>
+        
+        <div class='main'>
+            <div class='restaurantList-section'>
+                <br/>
+                <table id='restaurantList'>
+                    <tr>
+                        <th id='lado1'>
+                            <h2 id='title'>Qual é a sua morada?</h2>
+                            <form>
+                                <input class='campo-endereco' type="text" id="morada" placeholder='Morada'><br>
+                                <input class='campo-endereco' type="text" id="numero" placeholder='Número'><br>
+                                <input class='campo-endereco' type="text" id="complemento" placeholder='Fração'><br>
+                                <input class='campo-endereco' type="text" id="cidade" placeholder='Cidade'><br>
+                                <input class='campo-endereco' type="text" id="codigopostal" placeholder='Código Postal'><br>
+                            </form>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='lado2'>
+                            <h2 id='title'>Como deseja efetura o pagamento?</h2>
+                            <form  method='post'>
+                                <label class="container">Numerário
+                                  <input type="radio" id="numerario" checked="checked" name="radio" onclick="closeCardForm();">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Cartão de Crédito
+                                  <input type="radio" id="cartao" name="radio" onclick="showCardForm();">
+                                  <span class="checkmark"></span>
+                                </label>
+                                <div id='pay-section'></div>
+                                
+                                <input class='login-button' onclick='return fazerPedido()' type="submit" value="Fazer pedido!" onclick='return pay();'>
+                            </form>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>     
+                    <tr>
+                        <th id='lado1'>
+                            <h2 id='title'>Carrinho:</h2>
+                            <div id='products'></div>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='lado2'>
+                            
+                        </th>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            if(localStorage.logado == 'true') {
+                var usuarios = JSON.parse(localStorage.usuarios);    
+                document.getElementById('username').innerHTML = usuarios[localStorage.userNumber][2] + " (Logout)";  
+                document.getElementById('username').setAttribute('href', 'index.html');
+                document.getElementById('username').setAttribute('onclick', 'return logout();');
+            }
+            
+            function pay() {
+               window.location.href='/pedidoautorizado.html';
+
+               return false; 
+            }
+            
+            function logout() {
+                localStorage.logado = false;
+            }
+            
+            function showCardForm() {
+                document.getElementById("pay-section").innerHTML = "<form><input class='campo-endereco' type=\"text\" id=\"cardNumber\" placeholder='Número do Cartão'><br><input class='campo-endereco' type=\"text\" id=\"cardName\" placeholder='Nome Impresso no Cartão'><br><input class='campo-endereco' type=\"text\" id=\"cardDate\" placeholder='Data de Validade'><br><input class='campo-endereco' type=\"text\" id=\"cardSecNumber\" placeholder='Código de Segurança'><br></form>";
+            }
+            
+            function closeCardForm() {
+                document.getElementById("pay-section").innerHTML = "";
+            }
+            
+            if (sessionStorage.cartItemsNumber == "0" || sessionStorage.cartItemsNumber === undefined) {
+                document.getElementById("carrinhoSection").innerHTML = "<div id='cartEmpty'>Desculpe, não há nada aqui</div>";
+            } else {
+                var i;
+                var num = sessionStorage.cartItemsNumber;
+                var cartItemsN = JSON.parse(sessionStorage.getItem("cartItems"));
+                var total = 0;
+                document.getElementById("products").innerHTML +=
+                    "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Produto</b></td>" +
+                                    "<td id='price'><b>Preço</b></td>" +
+                                    "<td id='rest'><b>Restaurante</b></td>" +
+                                    "<td id='removeButton'>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                for(i = 0; i<num; i++) {
+                    var prod = cartItemsN[i][0];
+                    var price = cartItemsN[i][1];
+                    var rest = cartItemsN[i][2];
+                    price = parseFloat(price, 10);
+                    total += price;
+                    document.getElementById("products").innerHTML +=
+                        "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'>" +
+                                        prod +
+                                    "</td>" +
+                                    "<td id='price'>" +
+                                        price + "€" +
+                                    "</td>" +
+                                    "<td id='rest'>" +
+                                        rest +
+                                    "</td>" +
+                                    "<td id='removeButton'>" +
+                                        "<img prodNumber='" + i + "' onclick='removeFromCart(this);' id='rmv-bttn' src='../images/rmv-bttn.png'>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                }
+                
+                document.getElementById("products").innerHTML +=
+                        "<div id='productSession'><br>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Total:</b>" +
+                                    "</td>" +
+                                    "<td id='price'><b>" +
+                                        total + "€" +
+                                    "</b></td>" +
+                                    "<td id='removeButton'> </td>"+
+                                "</tr>" + 
+                            "</table><br><br>" + 
+                        "</div>"  
+                
+            }
+            
+            function fazerPedido() {
+                if(localStorage.pedidosNumber == 1) {
+                    
+                    var cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+                    var userNumber = localStorage.userNumber;
+                    var morada = document.getElementById("morada").value;
+                    var numero = document.getElementById("numero").value;
+                    var complemento = document.getElementById("complemento").value;
+                    var cidade = document.getElementById("cidade").value;
+                    var codigopostal = document.getElementById("codigopostal").value;
+                    
+                    var pedido = new Array();
+                    pedido[0] = cartItems;
+                    pedido[1] = userNumber;
+                    pedido[2] = morada;
+                    pedido[3] = numero;
+                    pedido[4] = complemento;
+                    pedido[5] = cidade;
+                    pedido[6] = codigopostal;
+                    
+                    
+                    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
+                    pedidos[1] = pedido;
+                    var pedidosJSON = JSON.stringify(pedidos);
+                    
+                    
+                    sessionStorage.currentOrder = 1;
+                    localStorage.setItem("pedidos" , pedidosJSON);
+                    localStorage.pedidosNumber = 2; 
+                    
+                
+                } else if(localStorage.pedidosNumber > 1 ) {
+                    
+                    console.log(localStorage.pedidosNumber);
+                    
+                    var cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+                    var userNumber = localStorage.userNumber;
+                    var morada = document.getElementById("morada").value;
+                    var numero = document.getElementById("numero").value;
+                    var complemento = document.getElementById("complemento").value;
+                    var cidade = document.getElementById("cidade").value;
+                    var codigopostal = document.getElementById("codigopostal").value;
+                    
+                    var pedido = new Array();
+                    pedido[0] = cartItems;
+                    pedido[1] = userNumber;
+                    pedido[2] = morada;
+                    pedido[3] = numero;
+                    pedido[4] = complemento;
+                    pedido[5] = cidade;
+                    pedido[6] = codigopostal;
+                    
+                    
+                    var pedidos = JSON.parse(localStorage.getItem('pedidos'));
+                    pedidos[localStorage.pedidosNumber] = pedido;
+                    var pedidosJSON = JSON.stringify(pedidos);
+                
+                    localStorage.setItem("pedidos" , pedidosJSON);
+                    
+                    sessionStorage.currentOrder = localStorage.pedidosNumber;
+                    localStorage.pedidosNumber++;
+                    localStorage.setItem("pedidos" , pedidosJSON);
+                    
+                    
+                } else {
+                    var cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
+                    var userNumber = localStorage.userNumber;
+                    var morada = document.getElementById("morada").value;
+                    var numero = document.getElementById("numero").value;
+                    var complemento = document.getElementById("complemento").value;
+                    var cidade = document.getElementById("cidade").value;
+                    var codigopostal = document.getElementById("codigopostal").value;
+                    
+                    
+                    var pedido = new Array();
+                    pedido[0] = cartItems;
+                    pedido[1] = userNumber;
+                    pedido[2] = morada;
+                    pedido[3] = numero;
+                    pedido[4] = complemento;
+                    pedido[5] = cidade;
+                    pedido[6] = codigopostal;
+                    
+                    var pedidos = new Array();
+                    pedidos[0] = pedido;
+                    var pedidosJSON = JSON.stringify(pedidos);
+                    
+                    sessionStorage.currentOrder = 0;
+                    localStorage.setItem("pedidos" , pedidosJSON);
+                    localStorage.pedidosNumber = 1; 
+                    
+                }
+                
+                
+                window.location.href='/pedidoautorizado.html';
+                
+                return false;   
+            } 
+            
+            
+            
+        </script>
+    </body>
+</html>

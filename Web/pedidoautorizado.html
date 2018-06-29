@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food.pt - Sistema de Gestão e Entrega de Comida</title>
+        <link rel="stylesheet" type="text/css" href="css/pagamento.css">   
+        
+
+        
+    </head>
+    <body>
+        
+        
+        <div class='header'>            
+            <a href="index.html">
+                <img class='logo' src="images/logo2.jpg" alt="Eat">
+                
+            </a>
+            <button class='login' type="button" ><a id='username' href="login.html">Registar | Entrar</a></button>
+                      
+        </div>
+        
+        <div class='main'>
+            <div class='restaurantList-section'>
+                <br/>
+                <table id='restaurantList'>
+                    <tr>
+                        <th id='lado1'>
+                            <h2 id='title'>Pedido</h2>
+                            <div id='pedido-section'></div>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='lado2'>
+                            <h2 id='title'>Morada da entrega:</h2>
+                            <div id='endereco-section'></div>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>     
+                    <tr>
+                        <th id='lado1'>
+                            <h2 id='title'>Mapa da localização:</h2>
+                            <div id='map-section'></div>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='lado2'>
+                            
+                        </th>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+        
+        <script>
+                if(localStorage.logado == 'true') {
+                var usuarios = JSON.parse(localStorage.usuarios);    
+                document.getElementById('username').innerHTML = usuarios[localStorage.userNumber][2] + " (Logout)";  
+                document.getElementById('username').setAttribute('href', 'index.html');
+                document.getElementById('username').setAttribute('onclick', 'return logout();');
+            }
+            
+            
+            function logout() {
+                localStorage.logado = false;
+            }
+            
+            
+                alert("Pagamento autorizado com sucesso!")
+            
+                var pedidos = JSON.parse(localStorage.pedidos);
+                var pedido = pedidos[sessionStorage.currentOrder];
+            
+                var i;
+                var num = pedido[0].length;
+                var total = 0;
+                document.getElementById("pedido-section").innerHTML +=
+                    "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Produto</b></td>" +
+                                    "<td id='price'><b>Preço</b></td>" +
+                                    "<td id='rest'><b>Restaurante</b></td>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                for(i = 0; i<num; i++) {
+                    var prod = pedido[0][i][0];
+                    var price = pedido[0][i][1];
+                    var rest = pedido[0][i][2];
+                    price = parseFloat(price, 10);
+                    total += price;
+                    document.getElementById("pedido-section").innerHTML +=
+                        "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'>" +
+                                        prod +
+                                    "</td>" +
+                                    "<td id='price'>" +
+                                        price + "€" +
+                                    "</td>" +
+                                    "<td id='rest'>" +
+                                        rest +
+                                    "</td>" +
+                                    
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                }
+                
+                document.getElementById("pedido-section").innerHTML +=
+                        "<div id='productSession'><br>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Total:</b>" +
+                                    "</td>" +
+                                    "<td id='price'><b>" +
+                                        total + "€" +
+                                    "</b></td>" +
+                                    "<td id='removeButton'> </td>"+
+                                "</tr>" + 
+                            "</table><br><br>" + 
+                        "</div>"  
+                
+                document.getElementById("endereco-section").innerHTML +=
+                    "<div id'moradaSection'><br><table><tr><td id='morada'>Morada: " + pedido[2] +
+                    "<br></td></tr><tr><td id='morada'>Número: " + pedido[3] +
+                    "<br></td></tr><tr><td id='morada'>Complemento: " + pedido[4] +
+                    "<br></td></tr><tr><td id='morada'>Cidade: " + pedido[5] +
+                    "<br></td></tr><tr><td id='morada'>Código Postal: " + pedido[6] + "</td></tr></table>";
+            
+            var morada = pedido[2];
+            morada = morada.toString();
+            morada = morada.split(' ').join('+');
+            
+            
+            var origin = "Av.+Duque+de+Loule,Lisboa+Portugal"
+            var destination = morada + "," + pedido[3] + "," + pedido[4] + "," + pedido[5] + "," + "Portugal";
+            var i;
+            
+            
+            document.getElementById("map-section").innerHTML +=
+                "<iframe id='map' " +
+                  "width='250%' " + 
+                  "height='450' " +
+                  "frameborder='0' style='border:0' " +
+                  "src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyD6WCJ-DIahPBzVHDqEjySOFLPEYpFzS7s&origin=" + origin+ "&destination="+ destination+"' " + 
+                  "allowfullscreen>" +
+                "</iframe>";
+                
+            
+            
+        </script>
+    </body>
+</html>

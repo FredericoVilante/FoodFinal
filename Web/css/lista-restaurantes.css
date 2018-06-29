@@ -1,0 +1,312 @@
+.header {
+    z-index: 10;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    background-color: green;
+    top:0;
+}
+
+.main {   
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    margin-left: 5%;
+    margin-top: 17px;
+    height:60%;
+}
+
+#zipcode {
+    margin-left: 20%;
+    top: 30%;
+    position: absolute;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+#googlepin {
+    display: inline;
+    top: 40%;
+    height: 35px;
+    width: auto;
+}
+
+.login {
+    margin-right: 70px;
+    right: 0;
+    margin-top: 32px;
+    position: absolute;
+    height:30px;
+    background-color: white;
+    font-size: 15;
+    
+    font-style: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+a {
+    color: green;
+    text-decoration: none;
+}
+
+a:visited
+{
+     color:green; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+.restaurantList-section {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    margin-bottom: 30px;
+    background-color: white;
+    width: 75%;
+    border-radius: 15px;
+}
+
+#title {
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 24px;
+    color: grey;
+    margin-left: auto;
+    margin-top: auto;
+    height: 30px;
+    width: 95%;
+}
+
+#restaurantList {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#restaurantPic {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+}
+
+#restaurant1 {
+    width: 40%;
+    float: left;
+}
+
+#restaurant2 {
+    float: right;
+    width: 40%;
+}
+
+#restaurantTitle {
+    float: left;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+#restaurantDescription {
+    float: left;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 14px;
+    color: gray;
+}
+
+.carrinho {
+    margin-right: 200px;
+    right: 0;
+    margin-top: 32px;
+    position: absolute;
+    height:30px;
+    background-color: white;
+    font-size: 15;
+    color: green;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-style: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+
+
+body {
+    background-color: lightgrey;
+    margin:0;
+    margin-top: 90px;
+}
+
+/* The Modal (background) */
+.modal {
+    border-radius: 8px;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.65); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    border-radius: 8px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: -1px;
+    border: 1px solid #888;
+    width: 45%;
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    padding-top: 5px;
+    padding-right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cartHeader {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+    height: 45px;
+    background-color: green;
+    
+}
+
+.cartHeaderTitle {
+    padding-top: 2%;
+    position: inherit;
+    text-align: center;
+    margin-top: auto;
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+#carticon {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    padding-left: 2%;
+    display: inline;
+    width: 7%;
+    height: auto;
+    float: left;
+}
+
+#carrinhoSection {
+    border-radius: 8px;
+    display: block;
+    background: white;
+    
+}
+
+#productTable {
+    width: 100%;
+    margin: auto;
+}
+
+#prod {
+    width: 32%;
+    text-align: center;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+   
+}
+
+#rest {
+    width: 32%;
+    text-align: center;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+   
+}
+
+#price {
+    width: 32%;
+    
+    text-align: center;
+    font-family: Helvetica, Geneva, sans-serif;
+    
+    
+}
+
+#map {
+    border-radius: 12px;
+    z-index: 0;
+}
+
+#rmv-bttn {
+    margin-right: 4%;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 20px;
+    height: auto;
+}
+
+#rmv-bttn:hover {
+    opacity: 0.5;
+    margin-right: 4%;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 20px;
+    height: auto;
+}
+
+#pay-button {
+    outline: none;
+    display: block;
+    height: 20px;
+    width: 80%;
+    background-color: limegreen;
+    border: none;
+    font-size: 14px;
+    color: white;
+    font-style: bold;
+    
+    border-radius: 8px;
+    
+}
+
+#pay-button:hover {
+    opacity: 0.5;
+    outline: none;
+    display: block;
+    height: 20px;
+    width: 80%;
+    background-color: limegreen;
+    border: none;
+    font-size: 14px;
+    color: white;
+    font-style: bold;
+    
+    border-radius: 8px;
+    
+}
+

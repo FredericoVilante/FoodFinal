@@ -1,0 +1,1 @@
+Para executar a aplicação web pode também abrir o terminal na pasta e executar o comando "fileserver.js" sem as aspas.

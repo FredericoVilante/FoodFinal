@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food.pt - Sistema de Gestão e Entrega de Comida</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            function search() {
+                var valor = document.getElementsByClassName("zipcode-input");
+                
+                if(valor.length > 0) {
+                    var isValidZip = /^\d{4}(-\d{3})?$/.test(valor[0].value);
+                    if(isValidZip) {
+                        sessionStorage.zipcode = valor[0].value;
+                        window.location.href='/lista-restaurantes.html';
+                    } else {
+                        alert("Por favor, introduza o seu código postal");
+                    }
+                }
+                
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <div class='header'>            
+            <a href="index.html">
+                <img class='logo' src="images/logo2.jpg" alt="Eat">
+            </a>
+            <button class='login' type="button" ><a id='username' href="login.html">Registar | Entrar</a></button>
+                      
+        </div>
+        
+        <div class='main'>
+            <div class='zipcode-section'>
+                <div class='zipcode-text'>
+                    <p>Procure os melhores estabelecimentos aderentes que entreguem na sua Rua:</p>
+                </div>
+                <form>
+                <input class='zipcode-input' type="text" name="zipsearchbox" placeholder='Introduza o seu código postal'>
+                <input class='zipcode-button' type="submit" value="Procurar" onclick='return search();'>
+                </form>
+            </div>
+        </div>
+        <script>
+            if(localStorage.logado == 'true') {
+                var usuarios = JSON.parse(localStorage.usuarios);    
+                document.getElementById('username').innerHTML = usuarios[localStorage.userNumber][2] + " (Logout)";  
+                document.getElementById('username').setAttribute('href', 'index.html');
+                document.getElementById('username').setAttribute('onclick', 'return logout();');
+            }
+            
+            function logout() {
+                localStorage.logado = false;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "eat",
+  "version": "1.0.0",
+  "description": "Food.pt",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "*",
+    "consolidate": "^0.15.0",
+    "express": "^4.16.3",
+    "express-session": "^1.7.6",
+    "hbs": "~4.0.1",
+    "mongodb": "^2.2.33",
+    "mongoose": "*",
+    "mustache": "^2.3.0"
+  },
+  "author": "Henrique Saleiro",
+  "license": "ISC"
+}

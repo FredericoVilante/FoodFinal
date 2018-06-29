@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Food.pt - Sistema de Gestão e Entrega de Comida</title>
+        <link rel="stylesheet" type="text/css" href="css/lista-restaurantes.css">   
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCSH5mJSQTawA2keGFgiWtozjJQm35I6-Y"></script>
+
+    </head>
+    <body>
+        <div id="carrinhoModal" class="modal">
+              <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class='cartHeader'>  
+                        <img id='carticon' src="images/carticon.png">
+                        <div class='cartHeaderTitle'> 
+                            O seu carrinho de compras
+                        </div>
+                    </div>
+                    <div id='carrinhoSection'>
+                            
+                    </div>
+                    </div>
+
+        </div>
+        
+        <div class='header'>            
+            <a href="index.html">
+                <img class='logo' src="images/logo2.jpg" alt="Eat">
+                <div id="zipcode" alt='Alterar Código Postal'>
+                    <img id='googlepin' src="images/googlepin.png" alt='Alterar Código Postal'>
+                </div>
+            </a>
+            <button class='carrinho' id='carrinho' type="button" >Carrinho</button>   
+            
+            <button class='login' type="button" ><a id ='username' href="login.html">Registar | Entrar</a></button>
+                      
+        </div>
+        
+        <div class='main'>
+            <div class='restaurantList-section'>
+                <br/>
+                <h2 id='title'>Estabelecimentos</h2>
+                <table id='restaurantList'>
+                    <tr>
+                        <th id='mapa'>
+                            
+                            <div id="map" style="width: 100%; height: 400px;"></div>
+                            <br/><br/><br/><br/>
+                        </th>
+                        
+                    </tr>
+                    <tr>
+                        <th id='restaurant1'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/bananacafe.png">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Banana Café</div><br/><br/>
+                                <div id='restaurantDescription'>€ • Portuguesa</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='restaurant2'>
+                            <a href="restaurantes/burgerking.html">
+                                <img id='restaurantPic' src="images/restaurantImges/burgerking.png">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Burger King</div><br/><br/>
+                                <div id='restaurantDescription'>€ • Lanches</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <th id='restaurant1'>
+                            <a href="restaurantes/moulesbeer.html">
+                                <img id='restaurantPic' src="images/restaurantImges/moulesbeer.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Moules & Beer</div><br/><br/>
+                                <div id='restaurantDescription'>€€ · Churrasqueira</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='restaurant2'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/altodobairro.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Alto do Bairro - Tapas Bar</div><br/><br/>
+                                <div id='restaurantDescription'>€€ · Mediterrânica</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id='restaurant1'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/naturalcrave.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Natural Crave</div><br/><br/>
+                                <div id='restaurantDescription'>€ · Saudável</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='restaurant2'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/madpizza.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Madpizza</div><br/><br/>
+                                <div id='restaurantDescription'>€ · Italiana · Saudável</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id='restaurant1'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/sushisa.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Sushi dos Sá Morais</div><br/><br/>
+                                <div id='restaurantDescription'>€ · Sushi · Japonesa</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='restaurant2'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/red.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Red We Like It Raw</div><br/><br/>
+                                <div id='restaurantDescription'>€ · Mediterrânica · Sanduíches</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th id='restaurant1'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/100montaditos.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>100 Montaditos</div><br/><br/>
+                                <div id='restaurantDescription'>€ · Espanhola · Sanduíches</div>
+                            </a>
+                            <br/><br/><br/><br/>
+                        </th>
+                        <th id='restaurant2'>
+                            <a href="restaurantes/bananacafe.html">
+                                <img id='restaurantPic' src="images/restaurantImges/agina.jpg">
+                                <br/><br/>
+                                <div id='restaurantTitle'>Hamburgueria A Gina</div><br/><br/>
+                                <div id='restaurantDescription'>€ · Americana</div>
+                                <br/><br/><br/><br/>
+                            </a>
+                        </th>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            document.getElementById("zipcode").innerHTML += sessionStorage.zipcode;
+            
+            function removeFromCart(e) {
+                var cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
+                var index = e.getAttribute('prodNumber');
+                if (index > -1) {
+                    cartItems.splice(index, 1);
+                }
+                sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+                sessionStorage.cartItemsNumber--;
+                alert("O seu produto foi removido com sucesso");
+                location.reload();
+            }
+            
+            if(localStorage.logado == 'true') {
+                var usuarios = JSON.parse(localStorage.usuarios);    
+                document.getElementById('username').innerHTML = usuarios[localStorage.userNumber][2] + " (Logout)";  
+                document.getElementById('username').setAttribute('href', 'index.html');
+                document.getElementById('username').setAttribute('onclick', 'return logout();');
+            }
+            
+            function logout() {
+                localStorage.logado = false;
+            }
+            
+            // Get the modal
+            var modal = document.getElementById('carrinhoModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("carrinho");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            
+            if (sessionStorage.cartItemsNumber == "0" || sessionStorage.cartItemsNumber === undefined) {
+                document.getElementById("carrinhoSection").innerHTML = "<div id='cartEmpty'>Desculpe, não há nada aqui</div>";
+            } else {
+                var i;
+                var num = sessionStorage.cartItemsNumber;
+                var cartItemsN = JSON.parse(sessionStorage.getItem("cartItems"));
+                var total = 0;
+                document.getElementById("carrinhoSection").innerHTML +=
+                    "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Produto</b></td>" +
+                                    "<td id='price'><b>Preço</b></td>" +
+                                    "<td id='rest'><b>Restaurante</b></td>" +
+                                    "<td id='removeButton'>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                for(i = 0; i<num; i++) {
+                    var prod = cartItemsN[i][0];
+                    var price = cartItemsN[i][1];
+                    var rest = cartItemsN[i][2];
+                    price = parseFloat(price, 10);
+                    total += price;
+                    document.getElementById("carrinhoSection").innerHTML +=
+                        "<div id='productSession'>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'>" +
+                                        prod +
+                                    "</td>" +
+                                    "<td id='price'>" +
+                                        price + "€" +
+                                    "</td>" +
+                                    "<td id='rest'>" +
+                                        rest +
+                                    "</td>" +
+                                    "<td id='removeButton'>" +
+                                        "<img prodNumber='" + i + "' onclick='removeFromCart(this);' id='rmv-bttn' src='images/rmv-bttn.png'>" +
+                                    "</td>" +
+                                "</tr>" + 
+                            "</table>" + 
+                        "</div>"    
+                }
+                
+                document.getElementById("carrinhoSection").innerHTML +=
+                        "<div id='productSession'><br>" +
+                            "<table id='productTable'>" + 
+                                "<tr>" + 
+                                    "<td id='prod'><b>Total:</b>" +
+                                    "</td>" +
+                                    "<td id='price'><b>" +
+                                        total + "€" +
+                                    "</b></td>" +
+                                    "<td id='rest'>" +
+                                        "<button onclick='return pagar();' id='pay-button'>PAGAR</button>"
+                                    "</td>" +
+                                    "<td id='removeButton'> </td>"+
+                                "</tr>" + 
+                            "</table><br><br>" + 
+                        "</div>"  
+                
+            }
+            
+            function pagar() {
+                window.location.href='/pagamento.html';
+            }
+            
+            
+        </script>
+        <script type="text/javascript">
+                var lat, lng;
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({address: sessionStorage.zipcode+", Portugal"},
+                    function(results_array, status) { 
+                        // Check status and do whatever you want with what you get back
+                        // in the results_array variable if it is OK.
+                         lat = results_array[0].geometry.location.lat();
+                         lng = results_array[0].geometry.location.lng();
+                });
+            
+                
+            
+            // Variável com os pontos geográficos de todos os restaurantes
+            var locations = [
+              ['Você está aqui!', lat, lng],
+              ['<a href="../restaurantes/burgerking.html"> Burger King</a>', 38.7055633, -9.1995586, 4],
+              ['<a href="../restaurantes/bananacafe.html"> Banana Café</a>', 38.7169584, -9.1446074, 5],
+              ['<a href="../restaurantes/moulesbeer.html"> Moules & Beer</a>', 38.7187292, -9.1671857, 3],
+              ['Alto do Bairro - Tapas Bar', 38.7113282, -9.1472627, 2],
+              ['MadPizza', 38.7286625, -9.1584088, 2],
+              ['Hamburgueria A Gina', 38.7181038, -9.1479085, 2],
+              ['Sushi dos Sá Morais', 38.7222161, -9.1534901, 2],
+              ['Red We Like It Raw', 38.7087254, -9.1655329, 2],
+              ['100 Montaditos', 38.7222148,, -9.168811, 2],       
+              ['Natural Crave', 38.7087267, 9.150212, 1]
+            ];
+
+            // Centralização do Mapa
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 12,
+              center: new google.maps.LatLng(38.7360741, -9.1776294),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            // Impressão dos pontos geográficos no mapa
+            for (i = 0; i < locations.length; i++) {  
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+              });
+                
+            // Funcao que abre os pop ups com os nomes dos restaurantes   
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                  infowindow.setContent(locations[i][0]);
+                  infowindow.open(map, marker);
+                }
+              })(marker, i));
+            }
+            
+            // Centralizar na localizaçao do usuário
+            if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: lat,
+              lng: lng
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      
+        </script>
+    </body>
+</html>
